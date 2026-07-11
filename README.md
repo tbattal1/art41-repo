@@ -87,6 +87,10 @@ Raw vessel-call data: **IMF PortWatch** (portwatch.imf.org), an open dataset.
 Snapshots in `data/snapshots/` are date-stamped pulls. Governance coding draws on
 primary legal texts, port authority reports, and peer-reviewed literature — each
 cited in the coding sheets.
+## Requirements
+
+**Python** ≥ 3.8 (see `requirements.txt`) — outcome calibration and PortWatch snapshot freezing (`src/art41_outcome.py`)
+**R** 4.3.3 with `QCA` (3.25) and `SetMethods` — configurational analysis (`src/ART41_fsqca.R`)
 
 ## Citation
 
