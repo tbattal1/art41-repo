@@ -1,0 +1,23 @@
+port,iso3,n_days_2020,mean_2020,mean_2020_21,E_C
+Rotterdam,NLD,306,59.9,58.8,0.48
+Hamburg,DEU,306,60.9,61.1,0.52
+Antwerp-Bruges,BEL,306,60.5,54.8,0.5
+Gdansk,POL,306,57.0,54.8,0.37
+Valencia,ESP,306,66.2,60.4,0.75
+Piraeus,GRC,306,65.0,69.0,0.71
+Tanger Med,MAR,306,73.1,70.3,0.92
+Mersin,TUR,306,63.6,59.2,0.65
+Singapore,SGP,306,57.8,53.1,0.4
+Shanghai,CHN,306,72.2,73.2,0.91
+Busan,KOR,306,55.6,53.3,0.32
+Port Klang,MYS,306,64.4,67.8,0.68
+Colombo,LKA,306,55.8,65.0,0.32
+Jebel Ali,ARE,306,59.8,55.1,0.47
+Los Angeles,USA,306,67.6,61.5,0.8
+New York/NJ,USA,306,67.6,61.5,0.8
+Vancouver,CAN,306,66.4,68.0,0.76
+Santos,BRA,306,68.2,63.6,0.82
+Cartagena,COL,306,74.4,67.1,0.94
+Durban,ZAF,306,64.8,58.2,0.7
+Lagos,NGA,306,64.7,54.6,0.7
+Melbourne,AUS,306,64.9,63.0,0.7

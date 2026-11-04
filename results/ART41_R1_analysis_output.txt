@@ -1,0 +1,588 @@
+ART-41 R1 analysis — 2026-11-04 11:01 +03 
+R version 4.3.3 (2024-02-29) | QCA 3.25 | admisc 0.41 
+
+Calibrated matrix written. Diversity: 12 of 32 rows observed.
+
+########## NECESSITY (incl.cut = 0.85, cov.cut = 0.5) ##########
+
+== outcome: Ycov ==
+
+                        inclN   RoN   covN  
+------------------------------------------- 
+ 1  ~C1 + C2            0.908  0.308  0.524 
+ 2  C1 + C2             0.901  0.326  0.527 
+ 3  ~C1 + ~C4           0.897  0.482  0.590 
+ 4  C2 + ~C3            0.958  0.293  0.542 
+ 5  ~C2 + ~C4           0.857  0.501  0.580 
+ 6  C2 + ~C4            0.922  0.249  0.510 
+ 7  C2 + C4             0.879  0.359  0.529 
+ 8  C2 + ~C5            0.944  0.252  0.521 
+ 9  C2 + C5             0.885  0.345  0.526 
+10  ~C3 + ~C4           0.900  0.454  0.578 
+11  C3 + ~C5            0.858  0.487  0.574 
+12  ~C4 + C5            0.903  0.466  0.585 
+13  ~C1 + ~C2 + C3      0.876  0.565  0.622 
+14  ~C1 + ~C2 + C5      0.859  0.581  0.622 
+15  C1 + ~C2 + ~C5      0.859  0.434  0.550 
+16  C1 + ~C3 + C4       0.854  0.556  0.606 
+17  C1 + C3 + ~C4       0.856  0.451  0.556 
+18  C1 + C3 + C4        0.866  0.650  0.667 
+19  ~C1 + ~C3 + ~C5     0.857  0.511  0.585 
+20  ~C1 + ~C3 + C5      0.868  0.554  0.612 
+21  C1 + ~C3 + ~C5      0.859  0.450  0.557 
+22  C1 + ~C3 + C5       0.912  0.526  0.618 
+23  C1 + C3 + C5        0.858  0.649  0.663 
+24  C1 + ~C4 + ~C5      0.862  0.374  0.526 
+25  C1 + C4 + ~C5       0.873  0.440  0.559 
+26  C1 + ~C2 + C4 + C5  0.852  0.628  0.647 
+27  ~C1 + C3 + C4 + C5  0.852  0.555  0.605 
+------------------------------------------- 
+
+
+== outcome: Yred ==
+
+                         inclN   RoN   covN  
+-------------------------------------------- 
+ 1  ~C4                  0.864  0.570  0.626 
+ 2  ~C1 + C2             0.888  0.307  0.521 
+ 3  C1 + C2              0.890  0.327  0.530 
+ 4  ~C1 + ~C5            0.887  0.578  0.640 
+ 5  C2 + ~C3             0.906  0.284  0.522 
+ 6  C2 + C3              0.869  0.388  0.543 
+ 7  C2 + ~C5             0.965  0.260  0.542 
+ 8  C2 + C5              0.850  0.340  0.514 
+ 9  C3 + ~C5             0.886  0.506  0.603 
+10  ~C1 + ~C2 + C3 + C5  0.854  0.504  0.587 
+-------------------------------------------- 
+
+
+== outcome: Ycov_n ==
+
+                     inclN   RoN   covN  
+---------------------------------------- 
+ 1  C2               0.872  0.448  0.604 
+ 2  C1 + ~C4         0.875  0.512  0.634 
+ 3  C1 + ~C5         0.890  0.554  0.662 
+ 4  ~C3 + ~C4        0.885  0.484  0.627 
+ 5  C3 + ~C4         0.861  0.546  0.645 
+ 6  C3 + ~C5         0.891  0.541  0.656 
+ 7  ~C4 + ~C5        0.899  0.505  0.643 
+ 8  ~C4 + C5         0.851  0.480  0.607 
+ 9  ~C1 + ~C3 + ~C5  0.857  0.549  0.644 
+10  ~C2 + ~C3 + ~C5  0.857  0.602  0.672 
+---------------------------------------- 
+
+
+== outcome: Yred_n ==
+
+                         inclN   RoN   covN  
+-------------------------------------------- 
+ 1  C2                   0.864  0.439  0.589 
+ 2  C1 + ~C3             0.872  0.615  0.680 
+ 3  ~C3 + ~C4            0.870  0.471  0.606 
+ 4  ~C4 + C5             0.862  0.479  0.606 
+ 5  ~C1 + ~C2 + ~C4      0.861  0.484  0.608 
+ 6  C1 + ~C2 + ~C4       0.887  0.459  0.609 
+ 7  C1 + ~C2 + ~C5       0.887  0.473  0.616 
+ 8  ~C1 + C3 + ~C4       0.885  0.466  0.611 
+ 9  C1 + C3 + ~C4        0.851  0.476  0.599 
+10  C1 + C3 + ~C5        0.852  0.458  0.591 
+11  ~C1 + ~C4 + ~C5      0.853  0.406  0.569 
+12  C1 + ~C4 + ~C5       0.859  0.397  0.569 
+13  C1 + C4 + ~C5        0.893  0.477  0.620 
+14  ~C2 + C3 + ~C4       0.866  0.495  0.615 
+15  ~C2 + C3 + ~C5       0.852  0.458  0.591 
+16  ~C2 + ~C4 + ~C5      0.855  0.419  0.576 
+17  C3 + C4 + ~C5        0.864  0.458  0.598 
+18  ~C1 + ~C2 + C3 + C4  0.852  0.558  0.639 
+19  ~C1 + ~C2 + C3 + C5  0.869  0.535  0.636 
+-------------------------------------------- 
+
+
+Skewness (share of cases > 0.5):
+  C1   C2   C3   C4   C5 Ycov Yred 
+0.64 0.77 0.59 0.14 0.27 0.50 0.50 
+
+########## SUFFICIENCY: COVID resilience ( Ycov ) ##########
+
+  OUT: output value
+    n: number of cases in configuration
+ incl: sufficiency inclusion score
+  PRI: proportional reduction in inconsistency
+
+     C1 C2 C3 C4 C5   OUT    n  incl  PRI  
+ 4   0  0  0  1  1     0     1  0.873 0.655
+32   1  1  1  1  1     0     1  0.826 0.519
+14   0  1  1  0  1     0     1  0.806 0.557
+30   1  1  1  0  1     0     3  0.756 0.483
+17   1  0  0  0  0     0     2  0.747 0.466
+27   1  1  0  1  0     0     1  0.704 0.322
+29   1  1  1  0  0     0     5  0.694 0.393
+21   1  0  1  0  0     0     1  0.692 0.240
+ 5   0  0  1  0  0     0     1  0.686 0.047
+13   0  1  1  0  0     0     1  0.685 0.324
+25   1  1  0  0  0     0     1  0.666 0.326
+ 9   0  1  0  0  0     0     4  0.575 0.269
+     cases                                
+ 4   Durban                               
+32   LA                                   
+14   Valencia                             
+30   Hamburg,Antwerp,Vancouver            
+17   Piraeus,JebelAli                     
+27   PortKlang                            
+29   Rotterdam,Gdansk,TangerMed,Busan,NYNJ
+21   Singapore                            
+ 5   Shanghai                             
+13   Santos                               
+25   Melbourne                            
+ 9   Mersin,Colombo,Cartagena,Lagos       
+
+It seems that all output values have been coded to zero.
+Suggestion: lower the inclusion score for the presence of the outcome,
+the relevant argument is "incl.cut" which now has a value of 0.8.
+
+
+-- Conservative (headline) --
+
+[1] "None of the values in OUT is explained. Please check the truth\n       table.\n\n"
+
+-- Parsimonious --
+
+[1] "None of the values in OUT is explained. Please check the truth\n       table.\n\n"
+
+-- Intermediate (dir.exp: C1=1,C2=1,C3=1,C4=0,C5=1 ) --
+
+[1] "None of the values in OUT is explained. Please check the truth\n       table.\n\n"
+
+########## SUFFICIENCY: Red Sea window resilience ( Yred ) ##########
+
+  OUT: output value
+    n: number of cases in configuration
+ incl: sufficiency inclusion score
+  PRI: proportional reduction in inconsistency
+
+     C1 C2 C3 C4 C5   OUT    n  incl  PRI  
+21   1  0  1  0  0     1     1  0.917 0.760
+ 5   0  0  1  0  0     1     1  0.916 0.794
+17   1  0  0  0  0     1     2  0.862 0.700
+27   1  1  0  1  0     0     1  0.813 0.525
+14   0  1  1  0  1     0     1  0.778 0.585
+13   0  1  1  0  0     0     1  0.775 0.569
+25   1  1  0  0  0     0     1  0.773 0.492
+ 4   0  0  0  1  1     0     1  0.734 0.119
+29   1  1  1  0  0     0     5  0.733 0.479
+32   1  1  1  1  1     0     1  0.695 0.354
+ 9   0  1  0  0  0     0     4  0.688 0.492
+30   1  1  1  0  1     0     3  0.608 0.326
+     cases                                
+21   Singapore                            
+ 5   Shanghai                             
+17   Piraeus,JebelAli                     
+27   PortKlang                            
+14   Valencia                             
+13   Santos                               
+25   Melbourne                            
+ 4   Durban                               
+29   Rotterdam,Gdansk,TangerMed,Busan,NYNJ
+32   LA                                   
+ 9   Mersin,Colombo,Cartagena,Lagos       
+30   Hamburg,Antwerp,Vancouver            
+
+
+-- Conservative (headline) --
+
+M1: C1*~C2*~C4*~C5 + ~C2*C3*~C4*~C5 -> Yred
+
+                   inclS   PRI   covS   covU   cases 
+-------------------------------------------------------------------------- 
+1  C1*~C2*~C4*~C5  0.862  0.701  0.300  0.038  Piraeus,JebelAli; Singapore 
+2  ~C2*C3*~C4*~C5  0.923  0.799  0.282  0.019  Shanghai; Singapore 
+-------------------------------------------------------------------------- 
+               M1  0.869  0.732  0.319 
+
+
+-- Parsimonious --
+
+M1: ~C2*~C4 -> Yred 
+M2: ~C2*~C5 -> Yred 
+
+                                 ------------------- 
+            inclS   PRI   covS   covU   (M1)   (M2)  
+---------------------------------------------------- 
+1  ~C2*~C4  0.803  0.642  0.346  0.015    -          
+2  ~C2*~C5  0.801  0.635  0.331  0.000           -   
+---------------------------------------------------- 
+        M1  0.803  0.642  0.346 
+        M2  0.801  0.635  0.331 
+
+            cases 
+----------------- 
+1  ~C2*~C4  Shanghai; Piraeus,JebelAli; Singapore
+2  ~C2*~C5  Shanghai; Piraeus,JebelAli; Singapore
+----------------- 
+
+
+-- Intermediate (dir.exp: C1=1,C2=1,C3=1,C4=0,C5=1 ) --
+
+From C1P1: 
+
+M1:    C1*~C2*~C4 + ~C2*C3*~C4 -> Yred 
+
+               inclS   PRI   covS   covU   cases 
+---------------------------------------------------------------------- 
+1  C1*~C2*~C4  0.862  0.701  0.300  0.038  Piraeus,JebelAli; Singapore 
+2  ~C2*C3*~C4  0.924  0.799  0.287  0.025  Shanghai; Singapore 
+---------------------------------------------------------------------- 
+           M1  0.871  0.732  0.325 
+
+
+From C1P2: 
+
+M1:    C1*~C2*~C4*~C5 + ~C2*C3*~C4*~C5 -> Yred 
+
+                   inclS   PRI   covS   covU   cases 
+-------------------------------------------------------------------------- 
+1  C1*~C2*~C4*~C5  0.862  0.701  0.300  0.038  Piraeus,JebelAli; Singapore 
+2  ~C2*C3*~C4*~C5  0.923  0.799  0.282  0.019  Shanghai; Singapore 
+-------------------------------------------------------------------------- 
+               M1  0.869  0.732  0.319 
+
+
+########## SUFFICIENCY: COVID fragility ( Ycov_n ) ##########
+
+  OUT: output value
+    n: number of cases in configuration
+ incl: sufficiency inclusion score
+  PRI: proportional reduction in inconsistency
+
+     C1 C2 C3 C4 C5   OUT    n  incl  PRI  
+ 5   0  0  1  0  0     1     1  0.985 0.953
+21   1  0  1  0  0     1     1  0.903 0.760
+27   1  1  0  1  0     0     1  0.860 0.678
+13   0  1  1  0  0     0     1  0.849 0.676
+ 9   0  1  0  0  0     1     4  0.844 0.731
+25   1  1  0  0  0     0     1  0.839 0.674
+32   1  1  1  1  1     0     1  0.812 0.481
+29   1  1  1  0  0     0     5  0.801 0.607
+17   1  0  0  0  0     0     2  0.779 0.534
+30   1  1  1  0  1     0     3  0.772 0.517
+ 4   0  0  0  1  1     0     1  0.758 0.345
+14   0  1  1  0  1     0     1  0.756 0.443
+     cases                                
+ 5   Shanghai                             
+21   Singapore                            
+27   PortKlang                            
+13   Santos                               
+ 9   Mersin,Colombo,Cartagena,Lagos       
+25   Melbourne                            
+32   LA                                   
+29   Rotterdam,Gdansk,TangerMed,Busan,NYNJ
+17   Piraeus,JebelAli                     
+30   Hamburg,Antwerp,Vancouver            
+ 4   Durban                               
+14   Valencia                             
+
+
+-- Conservative (headline) --
+
+M1: ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5 -> Ycov_n
+
+                       inclS   PRI   covS   covU   cases 
+--------------------------------------------------------------------------------- 
+1      ~C2*C3*~C4*~C5  0.909  0.761  0.256  0.035  Shanghai; Singapore 
+2  ~C1*C2*~C3*~C4*~C5  0.844  0.731  0.564  0.343  Mersin,Colombo,Cartagena,Lagos 
+--------------------------------------------------------------------------------- 
+                   M1  0.826  0.706  0.599 
+
+
+-- Parsimonious --
+
+M1: ~C2*C3 + (~C1*C2*~C3) -> Ycov_n 
+M2: ~C2*C3 + (~C1*~C3*~C4) -> Ycov_n 
+M3: ~C2*C3 + (~C1*~C3*~C5) -> Ycov_n 
+
+                                     -------------------------- 
+                inclS   PRI   covS   covU   (M1)   (M2)   (M3)  
+--------------------------------------------------------------- 
+1      ~C2*C3  0.874  0.682  0.266  0.000  0.035  0.004  0.010 
+--------------------------------------------------------------- 
+2   ~C1*C2*~C3  0.809  0.678  0.582  0.000  0.352               
+3  ~C1*~C3*~C4  0.833  0.712  0.608  0.000         0.347        
+4  ~C1*~C3*~C5  0.824  0.705  0.604  0.000                0.348 
+--------------------------------------------------------------- 
+            M1  0.795  0.659  0.617 
+            M2  0.797  0.659  0.612 
+            M3  0.790  0.654  0.613 
+
+                cases 
+--------------------- 
+1       ~C2*C3  Shanghai; Singapore
+--------------------- 
+2   ~C1*C2*~C3  Mersin,Colombo,Cartagena,Lagos
+3  ~C1*~C3*~C4  Mersin,Colombo,Cartagena,Lagos
+4  ~C1*~C3*~C5  Mersin,Colombo,Cartagena,Lagos
+--------------------- 
+
+
+-- Intermediate (dir.exp: C1=0,C2=0,C3=0,C4=1,C5=0 ) --
+
+From C1P1: 
+
+M1:    ~C2*C3*~C5 + ~C1*C2*~C3*~C5 -> Ycov_n 
+
+                   inclS   PRI   covS   covU   cases 
+----------------------------------------------------------------------------- 
+1      ~C2*C3*~C5  0.909  0.761  0.256  0.035  Shanghai; Singapore 
+2  ~C1*C2*~C3*~C5  0.842  0.730  0.569  0.348  Mersin,Colombo,Cartagena,Lagos 
+----------------------------------------------------------------------------- 
+               M1  0.825  0.705  0.604 
+
+
+From C1P2: 
+
+M1:    ~C2*C3*~C5 + ~C1*~C3*~C4*~C5 -> Ycov_n 
+
+                    inclS   PRI   covS   covU   cases 
+------------------------------------------------------------------------------ 
+1       ~C2*C3*~C5  0.909  0.761  0.256  0.000  Shanghai; Singapore 
+2  ~C1*~C3*~C4*~C5  0.852  0.743  0.599  0.343  Mersin,Colombo,Cartagena,Lagos 
+------------------------------------------------------------------------------ 
+                M1  0.826  0.706  0.599 
+
+
+From C1P3: 
+
+M1:    ~C1*~C3*~C5 + ~C2*C3*~C5 -> Ycov_n 
+
+                inclS   PRI   covS   covU   cases 
+-------------------------------------------------------------------------- 
+1  ~C1*~C3*~C5  0.824  0.705  0.604  0.348  Mersin,Colombo,Cartagena,Lagos 
+2   ~C2*C3*~C5  0.909  0.761  0.256  0.000  Shanghai; Singapore 
+-------------------------------------------------------------------------- 
+            M1  0.801  0.671  0.604 
+
+
+########## SUFFICIENCY: Red Sea window fragility ( Yred_n ) ##########
+
+  OUT: output value
+    n: number of cases in configuration
+ incl: sufficiency inclusion score
+  PRI: proportional reduction in inconsistency
+
+     C1 C2 C3 C4 C5   OUT    n  incl  PRI  
+ 4   0  0  0  1  1     1     1  0.964 0.881
+32   1  1  1  1  1     0     1  0.833 0.646
+30   1  1  1  0  1     0     3  0.810 0.674
+27   1  1  0  1  0     0     1  0.793 0.475
+25   1  1  0  0  0     0     1  0.772 0.490
+29   1  1  1  0  0     0     5  0.754 0.521
+21   1  0  1  0  0     0     1  0.738 0.240
+13   0  1  1  0  0     0     1  0.703 0.431
+ 9   0  1  0  0  0     0     4  0.699 0.508
+14   0  1  1  0  1     0     1  0.688 0.415
+17   1  0  0  0  0     0     2  0.678 0.300
+ 5   0  0  1  0  0     0     1  0.676 0.206
+     cases                                
+ 4   Durban                               
+32   LA                                   
+30   Hamburg,Antwerp,Vancouver            
+27   PortKlang                            
+25   Melbourne                            
+29   Rotterdam,Gdansk,TangerMed,Busan,NYNJ
+21   Singapore                            
+13   Santos                               
+ 9   Mersin,Colombo,Cartagena,Lagos       
+14   Valencia                             
+17   Piraeus,JebelAli                     
+ 5   Shanghai                             
+
+
+-- Conservative (headline) --
+
+M1: ~C1*~C2*~C3*C4*C5 -> Yred_n
+
+                      inclS   PRI   covS   covU   cases 
+-------------------------------------------------------- 
+1  ~C1*~C2*~C3*C4*C5  0.964  0.881  0.200    -    Durban 
+-------------------------------------------------------- 
+                  M1  0.964  0.881  0.200 
+
+
+-- Parsimonious --
+
+M1: ~C1*C4 -> Yred_n 
+M2: ~C2*C4 -> Yred_n 
+M3: ~C2*C5 -> Yred_n 
+M4: ~C3*C5 -> Yred_n 
+M5: ~C1*~C2*~C3 -> Yred_n 
+
+                                     ---------------------------------------- 
+                inclS   PRI   covS   covU   (M1)   (M2)   (M3)   (M4)   (M5)  
+----------------------------------------------------------------------------- 
+1       ~C1*C4  0.773  0.559  0.415  0.050    -                               
+2       ~C2*C4  0.872  0.720  0.237  0.004           -                        
+3       ~C2*C5  0.877  0.686  0.236  0.000                  -                 
+4       ~C3*C5  0.809  0.643  0.453  0.076                         -          
+5  ~C1*~C2*~C3  0.751  0.500  0.258  0.006                                -   
+----------------------------------------------------------------------------- 
+            M1  0.773  0.559  0.415 
+            M2  0.872  0.720  0.237 
+            M3  0.877  0.686  0.236 
+            M4  0.809  0.643  0.453 
+            M5  0.751  0.500  0.258 
+
+                cases 
+--------------------- 
+1       ~C1*C4  Durban
+2       ~C2*C4  Durban
+3       ~C2*C5  Durban
+4       ~C3*C5  Durban
+5  ~C1*~C2*~C3  Durban
+--------------------- 
+
+
+-- Intermediate (dir.exp: C1=0,C2=0,C3=0,C4=1,C5=0 ) --
+
+From C1P1, C1P2, C1P5: 
+
+M1:    ~C1*~C2*~C3*C4 -> Yred_n 
+
+                   inclS   PRI   covS   covU   cases 
+----------------------------------------------------- 
+1  ~C1*~C2*~C3*C4  0.865  0.689  0.224    -    Durban 
+----------------------------------------------------- 
+               M1  0.865  0.689  0.224 
+
+
+From C1P3, C1P4: 
+
+M1:    ~C1*~C2*~C3*C4*C5 -> Yred_n 
+
+                      inclS   PRI   covS   covU   cases 
+-------------------------------------------------------- 
+1  ~C1*~C2*~C3*C4*C5  0.964  0.881  0.200    -    Durban 
+-------------------------------------------------------- 
+                  M1  0.964  0.881  0.200 
+
+
+
+
+
+
+
+########## ROBUSTNESS ##########
+                                                                perturbation
+                                                                    baseline
+                                                            Durban C4 = 0.78
+                                                            Durban C4 = 0.67
+                                                         Cartagena C1 = 0.50
+                                                         Cartagena C1 = 0.70
+                                                             tie-break 0.499
+                                                 outcome anchors P85/P50/P15
+                                                 outcome anchors P75/P50/P25
+                                                    calibration B (additive)
+ J0: de facto submitted windows (24 Feb-4 Oct 2020; 26 Nov 2023-26 Sep 2024)
+                                            A2: A1 + ISO-week 51-53/1 masked
+                                               A3: Red Sea start 15 Dec 2023
+                  F1: full windows (to 31 Dec 2021 / 1 Oct 2023-30 Jun 2025)
+                                                       F2: F1 + holiday mask
+                                       F3: F1 with Red Sea start 19 Nov 2023
+                            V1: A1 windows on the Nov 2026 PortWatch re-pull
+            covid_path                         covid_solution
+ 0.844 / 0.731 / 0.564    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.844 / 0.731 / 0.564    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.844 / 0.731 / 0.564    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.840 / 0.719 / 0.547    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.835 / 0.705 / 0.529        C2*~C3*~C4*~C5 + ~C2*C3*~C4*~C5
+ 0.844 / 0.732 / 0.564                        ~C1*~C3*~C4*~C5
+ 0.820 / 0.737 / 0.532    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.792 / 0.719 / 0.517                         ~C2*C3*~C4*~C5
+ 0.828 / 0.691 / 0.602                     ~C1*~C2*C3*~C4*~C5
+ 0.832 / 0.717 / 0.560  C1*C2*~C3*C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.844 / 0.731 / 0.564    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.844 / 0.731 / 0.564    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+ 0.659 / 0.451 / 0.505                      ~C1*~C2*~C3*C4*C5
+ 0.722 / 0.505 / 0.530 ~C1*~C2*C3*~C4*~C5 + ~C1*~C2*~C3*C4*C5
+ 0.659 / 0.451 / 0.505                      ~C1*~C2*~C3*C4*C5
+ 0.844 / 0.731 / 0.564    ~C2*C3*~C4*~C5 + ~C1*C2*~C3*~C4*~C5
+           redsea_path   redsea_solution
+ 0.964 / 0.881 / 0.200 ~C1*~C2*~C3*C4*C5
+ 0.964 / 0.881 / 0.200 ~C1*~C2*~C3*C4*C5
+ 0.963 / 0.875 / 0.197 ~C1*~C2*~C3*C4*C5
+ 0.964 / 0.881 / 0.200 ~C1*~C2*~C3*C4*C5
+ 0.964 / 0.881 / 0.200 ~C1*~C2*~C3*C4*C5
+ 0.964 / 0.881 / 0.200 ~C1*~C2*~C3*C4*C5
+ 0.944 / 0.845 / 0.194 ~C1*~C2*~C3*C4*C5
+ 0.891 / 0.809 / 0.177 ~C1*~C2*~C3*C4*C5
+ 0.837 / 0.247 / 0.185    none explained
+ 0.980 / 0.930 / 0.215 ~C1*~C2*~C3*C4*C5
+ 0.964 / 0.881 / 0.199 ~C1*~C2*~C3*C4*C5
+ 0.903 / 0.662 / 0.203    none explained
+ 0.735 / 0.164 / 0.181    none explained
+ 0.735 / 0.217 / 0.177    none explained
+ 0.869 / 0.501 / 0.195    none explained
+ 0.964 / 0.881 / 0.200 ~C1*~C2*~C3*C4*C5
+
+-- Leave-one-out (outcome recalibrated on 21 cases) --
+   dropped            covid_path           redsea_path
+ Rotterdam 0.847 / 0.733 / 0.600 0.965 / 0.887 / 0.209
+   Hamburg 0.842 / 0.752 / 0.550 0.965 / 0.895 / 0.207
+   Antwerp 0.863 / 0.760 / 0.566 0.965 / 0.887 / 0.209
+    Gdansk 0.837 / 0.714 / 0.559 0.964 / 0.887 / 0.202
+  Valencia 0.845 / 0.730 / 0.571 0.956 / 0.858 / 0.199
+   Piraeus 0.839 / 0.730 / 0.566 0.961 / 0.876 / 0.184
+ TangerMed 0.852 / 0.746 / 0.574 0.950 / 0.842 / 0.198
+    Mersin 0.896 / 0.814 / 0.574 0.965 / 0.890 / 0.208
+ Singapore 0.842 / 0.723 / 0.581 0.961 / 0.885 / 0.180
+  Shanghai 0.842 / 0.733 / 0.562 0.984 / 0.943 / 0.197
+     Busan 0.839 / 0.730 / 0.562 0.966 / 0.885 / 0.203
+ PortKlang 0.838 / 0.744 / 0.538 0.966 / 0.885 / 0.204
+   Colombo 0.832 / 0.698 / 0.541 0.966 / 0.885 / 0.199
+  JebelAli 0.824 / 0.705 / 0.574 0.966 / 0.885 / 0.207
+        LA 0.839 / 0.730 / 0.568 0.965 / 0.887 / 0.211
+      NYNJ 0.854 / 0.748 / 0.563 0.966 / 0.885 / 0.206
+ Vancouver 0.839 / 0.730 / 0.566 0.965 / 0.890 / 0.208
+    Santos 0.837 / 0.712 / 0.560 0.966 / 0.885 / 0.199
+ Cartagena 0.832 / 0.729 / 0.514 0.956 / 0.860 / 0.199
+    Durban 0.845 / 0.730 / 0.574 0.952 / 0.662 / 0.147
+     Lagos 0.832 / 0.703 / 0.538 0.965 / 0.887 / 0.207
+ Melbourne 0.842 / 0.726 / 0.578 0.965 / 0.887 / 0.203
+
+########## TWO-STEP: EXPOSURE ##########
+Step 1  E_C -> Ycov_n : sufficiency incl 0.617 PRI 0.455 cov 0.762 | necessity inclN 0.762 RoN 0.588 covN 0.617
+Step 1  E_R -> Yred_n : sufficiency incl 0.734 PRI 0.605 cov 0.598 | necessity inclN 0.598 RoN 0.838 covN 0.734
+      port  E_C frag_covid  E_R frag_redsea ctx_C     ctx_R
+ Rotterdam 0.48       0.79 0.70        0.88   low   exposed
+   Hamburg 0.52       1.00 0.70        0.95  high   exposed
+   Antwerp 0.50       0.12 0.70        0.83   low   exposed
+    Gdansk 0.36       0.80 0.70        0.79   low   exposed
+  Valencia 0.76       0.10 0.70        0.03  high   exposed
+   Piraeus 0.71       0.44 0.95        0.76  high   exposed
+ TangerMed 0.92       0.03 0.70        0.05  high   exposed
+    Mersin 0.65       0.05 0.95        1.00  high   exposed
+ Singapore 0.40       0.87 0.40        0.47   low   partial
+  Shanghai 0.91       0.50 0.40        0.07  high   partial
+     Busan 0.32       0.35 0.40        0.30   low   partial
+ PortKlang 0.68       0.99 0.40        0.35  high   partial
+   Colombo 0.32       0.82 0.40        0.08   low   partial
+  JebelAli 0.47       0.03 0.40        0.28   low   partial
+        LA 0.80       0.48 0.05        0.93  high unexposed
+      NYNJ 0.80       0.19 0.40        0.44  high   partial
+ Vancouver 0.76       0.46 0.05        1.00  high unexposed
+    Santos 0.82       0.82 0.05        0.07  high unexposed
+ Cartagena 0.94       0.96 0.05        0.03  high unexposed
+    Durban 0.70       0.16 0.05        0.77  high unexposed
+     Lagos 0.70       0.76 0.05        0.77  high unexposed
+ Melbourne 0.70       0.82 0.05        0.51  high unexposed
+
+Step 2 (descriptive; no within-context minimisation — K17d). Locked paths within contexts:
+  high E_C       n=15  covid_cons : 0.818 / 0.695 / 0.582
+  low E_C        n= 7  covid_cons : 0.908 / 0.831 / 0.527
+  exposed E_R    n= 8  redsea_cons : 0.971 / 0.841 / 0.130
+  unexposed E_R  n= 7  redsea_cons : 0.979 / 0.961 / 0.240
+
+Six-condition conservative solutions (information only; exceeds case-to-condition benchmark):
+   Ycov_n : C1*C3*~C4*~C5*~E_C + ~C1*~C2*C3*~C4*~C5*E_C + ~C1*C2*~C3*~C4*~C5*~E_C 
+   Yred_n : ~C1*~C2*~C3*C4*C5*~E_R 
+
+Sensitivity NY-NJ E_R = 0.70: E_R -> Yred_n incl 0.716 PRI 0.581 (contexts unchanged for all other ports)

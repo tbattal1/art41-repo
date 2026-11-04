@@ -3,7 +3,5 @@ venv/
 __pycache__/
 *.pyc
 .DS_Store
-
-# Outputs are regenerated from snapshots — do NOT ignore snapshots or results-of-record
-# (snapshots are the reproducibility anchor and MUST be committed)
+# engine scratch output (regenerated from snapshots)
 art41_out/
