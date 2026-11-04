@@ -1,102 +1,49 @@
-# Port Governance Configurations and Measured Shock Recovery
+# No Best Model, Only Best Matches — replication package (revision R1)
 
-Replication package for the study of port governance configurations and measured
-shock recovery across the global port system (fsQCA), targeting *Research in
-Transportation Business & Management*, VSI **"Port Governance – Reloaded."**
+Replication package for *No Best Model, Only Best Matches: Governance Configurations, Two Shocks, and the Asymmetry of Port Resilience* (fsQCA; 22 container ports; COVID-19 and Red Sea windows). Manuscript under review at *Research in Transportation Business & Management*, VSI "Port Governance – Reloaded".
 
-**Working title:** *No Best Model, Only Best Matches: Governance Configurations and
-Measured Shock Recovery Across the Global Port System*
+**Version 1.2.0 (November 2026)** completes the package that was promised in the submitted manuscript and corrects three coding/analysis items disclosed in the revision (Gdańsk C5, codebook K18; directional expectations for fragility, K19; measurement windows, K22 — the submitted text misstated the windows actually used, see `data/snapshots/README.md`). Version 1.1.0 (July 2026) contained the codebook, four pilot coding sheets, one data snapshot and the analysis script only.
 
----
-
-## What this repository contains
-
-This is a **reproducibility package**. Every governance condition is coded with a
-documented source; every outcome metric is computed from a **frozen data snapshot**
-so that results do not drift when the upstream API is revised.
+## Contents
 
 ```
-art41-repo/
-├── README.md                  ← this file
-├── LICENSE                    ← CC-BY-4.0 (docs/data) + MIT (code)
-├── requirements.txt           ← Python dependencies
-├── src/
-│   └── art41_outcome.py       ← outcome computation engine (v5)
-├── data/
-│   └── snapshots/             ← frozen raw PortWatch pulls (*_raw_YYYYMMDD.csv)
-├── codebook/
-│   └── codebook_v2.1.md       ← locked coding rules + change log
-├── coding_sheets/             ← per-case condition coding with sources
-│   ├── pilot_rotterdam.md
-│   ├── pilot_mersin.md
-│   ├── pilot_durban.md
-│   ├── pilot_melbourne.md
-│   └── verification/          ← evidence addenda
-├── results/                   ← computed metrics (JSON) + weekly series (CSV)
-└── docs/
-    ├── design_v2.md           ← research design
-    ├── pilot_consolidated.md  ← pilot matrix + decision log
-    └── outcome_pilot_note.md  ← Ş1 outcome decision record
+codebook/
+  codebook_v2.8_EN.md          locked coding rules (English edition of v2.6 used for all coding) + revision entries K17–K23
+  codebook_v2.6_TR.md          original Turkish working version (July 2026), kept for audit
+coding_sheets/
+  <port>.md                    22 case coding sheets: every cell with value, source, date, one-line rationale
+  exposure_coding.md           remote conditions E_C, E_R: indicators D, Q, Z per port, with sources
+  TR_originals/                Turkish working files (July 2026), kept for audit
+data/
+  conditions_and_raw_outcomes_v3.csv   22 x (C1..C5 as coded, pre tie-break) + trough depth and half-life per shock (A1 windows, K22)
+  conditions_and_raw_outcomes_v2.csv   same conditions with the outcome cells of the submitted version (de facto windows), kept for audit
+  window_variants/             outcome tables under alternative windows (J0 de facto, A2, A3, F1-F3) and the Nov 2026 re-pull
+  snapshots/july2026/          frozen IMF PortWatch daily series behind Table 4.1 (44 files, SHA-256 register; see snapshots/README.md)
+  exposure/                    OxCGRT snapshot note, UN Comtrade raw JSON (154 queries, checksummed), derived tables
+src/
+  art41_outcome.py             outcome engine v5.2 (snapshot-first; YoY same-ISO-week ratio, 4-week rolling mean; K22 windows)
+  july_variants.py, grid.py, july_repro.py, nov_vintage.py   window reconstruction and window/vintage sensitivity (K22, K23)
+  run_all_snapshots.py         batch runner for 22 ports x 2 shocks (Shanghai = port1188 + port2027)
+  e_covid.py, fetch_comtrade.py, compute_Q.py   exposure indicators
+  ART41_R1_analysis.R          complete fsQCA analysis: calibration, necessity, sufficiency, robustness, two-step
+results/                       outputs of ART41_R1_analysis.R and of the outcome engine (metrics JSON, weekly CSV, logs)
+docs/                          design document, pilot decision log, exposure pre-registration (rules fixed before data retrieval)
 ```
 
-## Reproducing the outcome metrics
-
-Requirements: Python 3.9+ and the packages in `requirements.txt`.
+## Reproduce
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+# outcome metrics from frozen snapshots (deterministic)
+python3 src/art41_outcome.py --portid Rotterdam --shock S1 --snapshot data/snapshots/july2026/Rotterdam_COVID.csv
+# full fsQCA analysis (R 4.3.3, QCA 3.25, admisc 0.41)
+Rscript src/ART41_R1_analysis.R
 ```
 
-**Run from a frozen snapshot (deterministic — recommended for replication):**
+## Notes on provenance
 
-```bash
-python src/art41_outcome.py --portid port1114 --shock S1 \
-    --snapshot data/snapshots/port1114_S1_raw_20260707.csv
-```
+- Governance conditions were coded as of end-2019 by a single coder under the locked codebook; the coding sheets record the source for every cell. The replication of the July 2026 PortWatch pulls in November 2026 is documented in `data/snapshots/README.md`, including any differences caused by PortWatch's retroactive revisions.
+- The exposure conditions were added at revision; their rules were fixed and archived (`docs/exposure_rules_v1.md`) before any data were retrieved, and the two subsequent amendments (anchor source; Z definition) are logged with their reasons in the codebook (K17a, K17c).
 
-This reads only the frozen CSV, never the live API, so it reproduces the exact
-figures in the paper. Each run writes `results/{portid}_{shock}_metrics.json`
-(with the snapshot's SHA-256 stamp), a weekly series CSV, and a run log.
+## Licence
 
-**Refresh from the live API (creates a NEW dated snapshot):**
-
-```bash
-python src/art41_outcome.py --portid port1114 --portname Rotterdam --shock S1 --refresh
-```
-
-> ⚠️ **Why snapshots matter.** IMF PortWatch revises historical data (backfill).
-> The same command run days apart can yield different figures. The paper's results
-> are pinned to the committed snapshots in `data/snapshots/`. To reproduce the
-> published numbers, always pass `--snapshot`.
-
-## Outcome definition (locked)
-
-The recovery outcome **Y** is the **year-over-year (YoY) same-ISO-week ratio**
-(4-week rolling mean), which removes calendar seasonality. Reference years:
-Ş1 (COVID) → 2019; Ş2 (Red Sea) → 2022. A level-based definition is reported in
-the robustness appendix as a definition-sensitivity check. See
-`codebook/codebook_v2.1.md` §B and `docs/outcome_pilot_note.md` for the decision
-record (four definitions were tested on real Rotterdam data; only YoY located the
-actual COVID trough).
-
-## Data source & attribution
-
-Raw vessel-call data: **IMF PortWatch** (portwatch.imf.org), an open dataset.
-Snapshots in `data/snapshots/` are date-stamped pulls. Governance coding draws on
-primary legal texts, port authority reports, and peer-reviewed literature — each
-cited in the coding sheets.
-## Requirements
-
-**Python** ≥ 3.8 (see `requirements.txt`) — outcome calibration and PortWatch snapshot freezing (`src/art41_outcome.py`)
-**R** 4.3.3 with `QCA` (3.25) and `SetMethods` — configurational analysis (`src/ART41_fsqca.R`)
-
-## Citation
-
-Battal, T. (2026). *No Best Model, Only Best Matches: Governance Configurations and
-Measured Shock Recovery Across the Global Port System.* [Under preparation.]
-
-## License
-
-Code: MIT. Documentation, codebook, and coding sheets: CC-BY-4.0. See `LICENSE`.
+Code: MIT. Data, codebook and coding sheets: CC-BY-4.0.

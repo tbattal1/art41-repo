@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ART-41 — PortWatch Outcome Hesabı v3 (Ş1/Ş2)
+ART-41 — PortWatch Outcome Hesabı v5.2 (Ş1/Ş2)
 =============================================
 v3 = v2 (level+yoy iki tanim) + VERI DONDURMA DISIPLINI.
 
@@ -37,13 +37,18 @@ import pandas as pd
 API_URL = ("https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/"
            "Daily_Ports_Data/FeatureServer/0/query")
 
+# v5.2 (Nov 2026, revision R1): measurement windows = acute-phase windows of codebook rule K22.
+#   S1 COVID   : 2020-01-01 .. 2020-09-30  (demand-collapse phase; Q4-2020 onward = congestion regime)
+#   S2 Red Sea : 2023-11-19 .. 2024-11-18  (12 months from the Galaxy Leader hijack, 19 Nov 2023)
+# The submitted version (Jul 2026) de facto used 2020-02-24..2020-10-04 and 2023-11-26..2024-09-26
+# (recovered empirically; see codebook K22 and src/grid.py). series_* ranges are unchanged.
 SHOCKS = {
     "S1": {"baseline": ("2019-01-01", "2019-12-31"),
-           "window": ("2020-01-01", "2021-12-31"),
+           "window": ("2020-01-01", "2020-09-30"),
            "series_start": "2019-01-01", "series_end": "2022-01-09",
            "yoy_ref_year": 2019},
     "S2": {"baseline": ("2023-01-01", "2023-09-30"),
-           "window": ("2023-10-01", "2025-06-30"),
+           "window": ("2023-11-19", "2024-11-18"),
            "series_start": "2021-01-01", "series_end": "2025-07-06",
            "yoy_ref_year": 2022},
 }
@@ -66,11 +71,21 @@ def fetch_api(portid, start, end, log):
                   "outFields": "date,portid,portcalls,portcalls_container,portcalls_cargo,portcalls_tanker",
                   "orderByFields": "date", "returnGeometry": "false",
                   "resultOffset": offset, "resultRecordCount": 2000, "f": "json"}
-        r = requests.get(API_URL, params=params, timeout=120)
-        r.raise_for_status()
-        js = r.json()
-        if "error" in js:
-            raise RuntimeError(js["error"])
+        js = None
+        for attempt in range(8):                      # v5.1: retry on transient ArcGIS errors (HTTP 400 "Invalid URL", 429, 5xx)
+            try:
+                r = requests.get(API_URL, params=params, timeout=120)
+                r.raise_for_status()
+                js = r.json()
+                if "error" in js:
+                    raise RuntimeError(js["error"])
+                break
+            except Exception as e:
+                if attempt == 7:
+                    raise
+                import time; wait = 15 * (attempt + 1)
+                log.append(f"API retry {attempt+1} after error: {str(e)[:80]} (sleep {wait}s)")
+                time.sleep(wait)
         feats = js.get("features", [])
         rows += [f["attributes"] for f in feats]
         log.append(f"API batch offset={offset} -> {len(feats)}")
@@ -246,7 +261,7 @@ def main():
 
     os.makedirs(args.outdir, exist_ok=True)
     shock = SHOCKS[args.shock]
-    log = [f"ART-41 outcome v5 | {datetime.now(timezone.utc).isoformat()}",
+    log = [f"ART-41 outcome v5.2 | {datetime.now(timezone.utc).isoformat()}",
            f"portid={args.portid} shock={args.shock}",
            f"taban {shock['baseline']} | sok {shock['window']} | yoy_ref {shock['yoy_ref_year']}",
            f"esik={RECOVERY_FRAC} sustain={SUSTAIN_WEEKS}h roll={ROLL_W}h"]

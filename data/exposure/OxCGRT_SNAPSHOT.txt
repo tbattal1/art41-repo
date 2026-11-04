@@ -1,0 +1,1 @@
+OxCGRT_compact_national_v1.csv downloaded 2026-11-03 from raw.githubusercontent.com/OxCGRT/covid-policy-dataset/main/data/ ; SHA-256 fa5c95fa8f5e386517698cdc17581f7e3333348907c57ad8459c877580d0fe79
