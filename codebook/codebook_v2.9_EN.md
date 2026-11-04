@@ -163,7 +163,7 @@ The series used for the YoY ratio and the rolling mean are unchanged (Shock 1: 2
 
 **Disclosure.** The submitted manuscript stated the windows as Jan 2020 – Dec 2021 and Oct 2023 – Jun 2025. Re-running the frozen July 2026 snapshots (44/44 SHA-256 matches with the July result register) with those windows does **not** reproduce Table 4.1; a grid search over window bounds (`src/grid.py`) reproduces all 44 cells exactly with COVID 24 Feb 2020 – 4 Oct 2020 and Red Sea 26 Nov 2023 – 26 Sep 2024 (ISO weeks W09–W40 2020 and W48 2023 – W38 2024). These are therefore the windows **de facto used** in the submitted version. The July engine code that produced them is not in the repository and the mechanism is not recoverable; the author takes responsibility for the misstatement. The de facto windows are retained as a robustness row ("J0"), and the rule above replaces them with windows that are defined ex ante and justified by the shock mechanisms rather than recovered ex post.
 
-**Consequences for Table 4.1 (July snapshots, A1 windows vs de facto windows).** Eight cells change: Shanghai COVID depth 5.5 → 9.6 %, half-life 1 → 3 wk; Mersin COVID 0.1 → 2.0 %, 1 → 2 wk; Mersin Red Sea 29.4 → 32.0 %, 5 → 6 wk; Valencia Red Sea −0.5 → 0.2 %, 0 → 1 wk; Busan Red Sea −5.1 → 2.8 %, 0 → 4 wk; Port Klang Red Sea 2.0 → 3.0 %, 2 → 4 wk; Colombo Red Sea 2.9 → 4.4 %; NY/NJ Red Sea 6.9 → 13.7 %; Shanghai Red Sea 1.8 → 3.6 %; Cartagena Red Sea −19.8 → −6.0 % (no decline in either case). All other cells are identical.
+**Consequences for Table 4.1 (July snapshots, A1 windows vs de facto windows).** Ten port–shock cells change (two COVID, eight Red Sea): Shanghai COVID depth 5.5 → 9.6 %, half-life 1 → 3 wk; Mersin COVID 0.1 → 2.0 %, 1 → 2 wk; Mersin Red Sea 29.4 → 32.0 %, 5 → 6 wk; Valencia Red Sea −0.5 → 0.2 %, 0 → 1 wk; Busan Red Sea −5.1 → 2.8 %, 0 → 4 wk; Port Klang Red Sea 2.0 → 3.0 %, 2 → 4 wk; Colombo Red Sea 2.9 → 4.4 %; NY/NJ Red Sea 6.9 → 13.7 %; Shanghai Red Sea 1.8 → 3.6 %; Cartagena Red Sea −19.8 → −6.0 % (no decline in either case). All other cells are identical.
 
 ### B.8 Data-anomaly mask for full-window robustness (K23, v2.8, 04.11.2026, author decision)
 
@@ -324,7 +324,7 @@ No case can sit at the 0.50 crossover by construction. Pre-registered expected p
 **Retroactive effect (v2.1):** Mersin C3.4 0 → confirmed; Melbourne C3.4 1 (flagged) → 0; Durban C3.4 (flagged) → 0.
 **Retroactive effect (v2.4/K14):** see Section G.
 **Retroactive effect (v2.7/K18):** Gdańsk C5 0.70 → 0.40; Valencia 0.95 and Piraeus 0.40 confirmed (see Section G).
-**Retroactive effect (v2.8/K22):** outcome cells recomputed on the frozen July 2026 snapshots (`data/conditions_and_raw_outcomes_v3.csv`); eight cells change (Section B.7).
+**Retroactive effect (v2.8/K22):** outcome cells recomputed on the frozen July 2026 snapshots (`data/conditions_and_raw_outcomes_v3.csv`); ten port–shock cells change (Section B.7).
 **Retroactive effect (v2.9/K24):** Mersin and Colombo Red Sea cells (`data/conditions_and_raw_outcomes_v4.csv`, Section B.9).
 
 ## SECTION G — K14 RETROACTIVE RECORD (EU at-berth mandate, 08.07.2026)
