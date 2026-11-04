@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ART-41 — PortWatch Outcome Hesabı v5.2 (Ş1/Ş2)
+ART-41 — PortWatch Outcome Hesabı v5.3 (Ş1/Ş2)
 =============================================
 v3 = v2 (level+yoy iki tanim) + VERI DONDURMA DISIPLINI.
 
@@ -37,7 +37,7 @@ import pandas as pd
 API_URL = ("https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/"
            "Daily_Ports_Data/FeatureServer/0/query")
 
-# v5.2 (Nov 2026, revision R1): measurement windows = acute-phase windows of codebook rule K22.
+# v5.3 (Nov 2026, revision R1): measurement windows = acute-phase windows of codebook rule K22; K24 pre-shock-level rule.
 #   S1 COVID   : 2020-01-01 .. 2020-09-30  (demand-collapse phase; Q4-2020 onward = congestion regime)
 #   S2 Red Sea : 2023-11-19 .. 2024-11-18  (12 months from the Galaxy Leader hijack, 19 Nov 2023)
 # The submitted version (Jul 2026) de facto used 2020-02-24..2020-10-04 and 2023-11-26..2024-09-26
@@ -230,6 +230,8 @@ def metrics_level(wk, shock, col):
     return out
 
 
+PRE_WEEKS, PRE_TOL, EARLY_WEEKS = 8, 0.15, 4     # K24 pre-shock-level rule (v5.3)
+
 def metrics_yoy(wk, shock, col):
     rc = f"{col}_yoy_r{ROLL_W}"
     w0, w1 = pd.Timestamp(shock["window"][0]), pd.Timestamp(shock["window"][1])
@@ -240,13 +242,28 @@ def metrics_yoy(wk, shock, col):
     ft = after[after[rc] >= RECOVERY_FRAC]; vals = (after[rc] >= RECOVERY_FRAC).tolist()
     sus = next((after.iloc[j] for j in range(len(vals)-SUSTAIN_WEEKS+1)
                 if all(vals[j:j+SUSTAIN_WEEKS])), None)
-    ht = float(tr[rc]) + 0.5*(1.0-float(tr[rc])); hl = after[after[rc] >= ht]
+    # K24 (codebook B.9): pre-shock level = mean ratio over the 8 weeks before the window. If it deviates from
+    # 1 by more than 15 % and the trough falls in the first 4 window weeks, the decline pre-dates the shock;
+    # depth and half-life are then measured against the pre-shock level. Not applicable where no pre-window
+    # ratios exist (COVID window: reference year 2019 = series start).
+    pre_s = wk[(wk["week_start"] < w0) & (wk["week_start"] >= w0 - pd.Timedelta(weeks=PRE_WEEKS))][rc].dropna()
+    pre = float(pre_s.mean()) if len(pre_s) else None
+    early = (tr["week_start"] - w0).days // 7 < EARLY_WEEKS
+    k24 = pre is not None and abs(pre - 1.0) > PRE_TOL and early
+    if k24:
+        depth = max(0.0, 100*(1 - float(tr[rc])/pre)); ht = float(tr[rc]) + 0.5*(pre - float(tr[rc]))
+    else:
+        depth = 100*(1 - float(tr[rc])); ht = float(tr[rc]) + 0.5*(1.0 - float(tr[rc]))
+    hl = after[after[rc] >= ht]
+    hl_out = wk_out(None if hl.empty else hl.iloc[0], tr["week_start"])
+    if k24 and depth == 0: hl_out = {"week": None, "weeks_from_trough": 0}
     return {"definition": f"YOY ayni-hafta orani, {ROLL_W}h yuvarlanan (ref {shock['yoy_ref_year']}; mevsimsellik-arindirilmis)",
             "trough_week": str(tr["week_start"].date()), "trough_ratio": round(float(tr[rc]), 4),
-            "drop_depth_pct": round(100*(1-float(tr[rc])), 2),
+            "pre_shock_level": None if pre is None else round(pre, 4), "k24_applied": bool(k24),
+            "drop_depth_pct": round(depth, 2),
             "recovery_first_touch": wk_out(None if ft.empty else ft.iloc[0], tr["week_start"]),
             "recovery_sustained_4wk": wk_out(sus, tr["week_start"]),
-            "half_life": wk_out(None if hl.empty else hl.iloc[0], tr["week_start"])}
+            "half_life": hl_out}
 
 
 def main():
@@ -261,7 +278,7 @@ def main():
 
     os.makedirs(args.outdir, exist_ok=True)
     shock = SHOCKS[args.shock]
-    log = [f"ART-41 outcome v5.2 | {datetime.now(timezone.utc).isoformat()}",
+    log = [f"ART-41 outcome v5.3 | {datetime.now(timezone.utc).isoformat()}",
            f"portid={args.portid} shock={args.shock}",
            f"taban {shock['baseline']} | sok {shock['window']} | yoy_ref {shock['yoy_ref_year']}",
            f"esik={RECOVERY_FRAC} sustain={SUSTAIN_WEEKS}h roll={ROLL_W}h"]
@@ -286,7 +303,7 @@ def main():
     wk.to_csv(f"{args.outdir}/{stem}_weekly.csv", index=False)
     meta = {"portid": args.portid, "portname": args.portname, "shock": args.shock,
             "generated_utc": datetime.now(timezone.utc).isoformat(),
-            "codebook_version": "v2.1", "script_version": "v5",
+            "codebook_version": "v2.9", "script_version": "v5.3",
             "data_source": source, "snapshot_file": snap, "snapshot_sha256_12": sha12(snap),
             "results": results}
     with open(f"{args.outdir}/{stem}_metrics.json", "w") as f:
