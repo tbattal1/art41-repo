@@ -1,4 +1,4 @@
-# ART-41 — Codebook v2.8 (English edition of the locked codebook v2.6, with revision entries K17–K23)
+# ART-41 — Codebook v2.9 (English edition of the locked codebook v2.6, with revision entries K17–K24)
 
 ## Preface to the English edition
 
@@ -163,11 +163,23 @@ The series used for the YoY ratio and the rolling mean are unchanged (Shock 1: 2
 
 **Disclosure.** The submitted manuscript stated the windows as Jan 2020 – Dec 2021 and Oct 2023 – Jun 2025. Re-running the frozen July 2026 snapshots (44/44 SHA-256 matches with the July result register) with those windows does **not** reproduce Table 4.1; a grid search over window bounds (`src/grid.py`) reproduces all 44 cells exactly with COVID 24 Feb 2020 – 4 Oct 2020 and Red Sea 26 Nov 2023 – 26 Sep 2024 (ISO weeks W09–W40 2020 and W48 2023 – W38 2024). These are therefore the windows **de facto used** in the submitted version. The July engine code that produced them is not in the repository and the mechanism is not recoverable; the author takes responsibility for the misstatement. The de facto windows are retained as a robustness row ("J0"), and the rule above replaces them with windows that are defined ex ante and justified by the shock mechanisms rather than recovered ex post.
 
-**Consequences for Table 4.1 (July snapshots, A1 windows vs de facto windows).** Eight cells change: Shanghai COVID depth 5.5 → 9.6 %, half-life 1 → 3 wk; Mersin COVID 0.1 → 2.0 %, 1 → 2 wk; Mersin Red Sea 29.4 → 32.0 %, 5 → 6 wk; Valencia Red Sea −0.5 → 0.2 %, 0 → 1 wk; Busan Red Sea −5.1 → 2.8 %, 0 → 4 wk; Port Klang Red Sea 2.0 → 3.0 %, 2 → 4 wk; Colombo Red Sea 2.9 → 4.4 %; NY/NJ Red Sea 6.9 → 13.7 %; Shanghai Red Sea 1.8 → 3.6 %; Cartagena Red Sea −19.8 → −6.0 % (no decline in either case). All other cells are identical.
+**Consequences for Table 4.1 (July snapshots, A1 windows vs de facto windows).** Ten port–shock cells change (two COVID, eight Red Sea): Shanghai COVID depth 5.5 → 9.6 %, half-life 1 → 3 wk; Mersin COVID 0.1 → 2.0 %, 1 → 2 wk; Mersin Red Sea 29.4 → 32.0 %, 5 → 6 wk; Valencia Red Sea −0.5 → 0.2 %, 0 → 1 wk; Busan Red Sea −5.1 → 2.8 %, 0 → 4 wk; Port Klang Red Sea 2.0 → 3.0 %, 2 → 4 wk; Colombo Red Sea 2.9 → 4.4 %; NY/NJ Red Sea 6.9 → 13.7 %; Shanghai Red Sea 1.8 → 3.6 %; Cartagena Red Sea −19.8 → −6.0 % (no decline in either case). All other cells are identical.
 
 ### B.8 Data-anomaly mask for full-window robustness (K23, v2.8, 04.11.2026, author decision)
 
 **Rule.** In robustness runs that extend the window beyond the acute phase (F-variants), weeks in which **all** PortWatch vessel-type series of a port fall simultaneously by more than 40 % against the same ISO week of the reference year are treated as a data-coverage anomaly (AIS gap) and masked before the trough search. The rule is not applied in the primary analysis because no such week falls inside the A1 windows. Documented instance: Colombo, 11 Sep – 29 Oct 2023 (all vessel types ≈ −50 %, present in the July 2026 and November 2026 snapshots alike); it falls outside the A1 Red Sea window but dominates the trough when the window starts on 1 Oct 2023. The holiday mask (ISO weeks 51–53 and 1) is a separate, pre-existing sensitivity variant (A2/F2) and has no effect under A1.
+
+### B.9 Pre-shock level rule (K24, v2.9, 04.11.2026, author decision)
+
+**Problem.** The year-on-year ratio measures a port's calls against the same ISO week of the reference year (2022 for the Red Sea window). Where a port's calls were already far from the reference-year level *before* the shock, the first weeks of the window inherit that pre-existing deviation, and a trough located in the first window weeks measures the pre-existing deviation rather than the shock. Diagnostic: the trough falls in the first weeks of the window **and** the pre-window ratio is already far from 1.
+
+**Rule.** Let *pre* be the mean of the 4-week-rolling ratio over the eight weeks preceding the window. If |*pre* − 1| > 0.15 **and** the window trough falls in the first four window weeks, the decline is not attributable to the shock. The shock-attributable depth is then 100 (1 − trough/*pre*), floored at zero, and the half-life is counted to the first week at which the ratio reaches trough + 0.5 (*pre* − trough); a zero depth has half-life zero. The rule is applied mechanically to every cell in every window variant (`src/outcome_rules.py`, `src/art41_outcome.py` v5.3). It is not applicable to the COVID window, whose reference year (2019) is the first year of the series, so no pre-window ratios exist; the 2019 base is treated as clean.
+
+**Application (A1 windows).** Two cells are flagged, both in the Red Sea window. **Mersin:** container calls had fallen to 0.58–0.79 of the 2022 level through September–November 2023 (quarterly daily means: 2022Q3–Q4 4.6–4.9; 2023Q2–Q3 2.7–2.8; 2023Q4 3.6; 2024Q1–Q3 4.1–4.2), the "trough" of 0.680 sits in the first window week (20 Nov 2023), and the ratio **rose** to parity through January–February 2024, i.e. during the rerouting. The submitted depth of 29.4 % (de facto window) / 32.0 % (A1) therefore measured the 2022-base effect of the 2023 slump, not the Red Sea shock; under K24 the cell becomes 5.4 % / 1 week (Yred membership 0.00 → 0.87). **Colombo:** the pre-window mean (0.681) is dominated by the September–October 2023 coverage gap (K23); the trough is in the first window week at 0.956; the K24 depth is zero (previously 4.4 % / 1 week, immaterial).
+
+**Disclosure.** The submitted manuscript built its central illustration (the "Mersin reversal": resilience 0.95 under the pandemic, 0.00 in the Red Sea window; Figure 3; §4.4, §5.6; abstract) on the uncorrected Mersin cell. That illustration is withdrawn in the revision. Mersin's pandemic resilience stands; its Red Sea fragility does not.
+
+**Known limitation.** The pre-window level inherits anomalies of the reference-year weeks it is compared with: Durban's pre-window ratio (2.74) reflects the October 2022 Transnet strike in the denominator, not a 2023 surge. Durban is not flagged under A1 (trough in window week 7), but is flagged under the 15 Dec 2023 start (A3), where the rule then overstates its depth; this is reported in the window-sensitivity rows and is one reason the A1 start date is preferred.
 
 ---
 
@@ -307,11 +319,13 @@ No case can sit at the 0.50 crossover by construction. Pre-registered expected p
 | v2.7 | 03.11.2026 | K21: Branch A rule for private-use terminals (TUP): remaining ANTAQ authorization term (25 yr from adhesion contract); non-operating terminals excluded; sensitivity reported. | Santos C4b recomputation after a source check found Tecon Santos' lease extended to 2047 in 2015; value 0.33 confirmed | K21 |
 | v2.8 | 04.11.2026 | K22: Acute-phase measurement windows fixed (COVID 1 Jan – 30 Sep 2020; Red Sea 19 Nov 2023 – 18 Nov 2024); disclosure that the submitted version de facto used 24 Feb – 4 Oct 2020 and 26 Nov 2023 – 26 Sep 2024 (recovered empirically from the frozen snapshots), while the text stated Jan 2020 – Dec 2021 and Oct 2023 – Jun 2025. Engine v5.2. | Windows must be defined ex ante by the shock mechanism; the stated windows mix the demand collapse with the 2021 congestion regime and the 2025 normalisation and do not reproduce Table 4.1 | K22 |
 | v2.8 | 04.11.2026 | K23: Data-anomaly mask (simultaneous >40 % fall in all vessel-type series vs reference week) for full-window robustness runs only; documented instance Colombo 11 Sep – 29 Oct 2023. | AIS coverage gaps must not be read as shock troughs; no instance inside the A1 windows | K23 |
+| v2.9 | 04.11.2026 | K24: Pre-shock level rule — where the pre-window ratio deviates from 1 by >15 % and the trough falls in the first four window weeks, depth and half-life are measured against the pre-window level. Applied to Mersin (Red Sea 32.0 %/6 wk → 5.4 %/1 wk) and Colombo (4.4 %/1 → 0/0). Disclosure: the submitted "Mersin reversal" rested on the uncorrected cell and is withdrawn. Engine v5.3. | A trough in the first window weeks with a pre-existing deviation from the reference year measures the pre-existing deviation, not the shock; Mersin's calls rose during the rerouting | K24 |
 
 **Retroactive effect (v2.1):** Mersin C3.4 0 → confirmed; Melbourne C3.4 1 (flagged) → 0; Durban C3.4 (flagged) → 0.
 **Retroactive effect (v2.4/K14):** see Section G.
 **Retroactive effect (v2.7/K18):** Gdańsk C5 0.70 → 0.40; Valencia 0.95 and Piraeus 0.40 confirmed (see Section G).
-**Retroactive effect (v2.8/K22):** outcome cells recomputed on the frozen July 2026 snapshots (`data/conditions_and_raw_outcomes_v3.csv`); eight cells change (Section B.7).
+**Retroactive effect (v2.8/K22):** outcome cells recomputed on the frozen July 2026 snapshots (`data/conditions_and_raw_outcomes_v3.csv`); ten port–shock cells change (Section B.7).
+**Retroactive effect (v2.9/K24):** Mersin and Colombo Red Sea cells (`data/conditions_and_raw_outcomes_v4.csv`, Section B.9).
 
 ## SECTION G — K14 RETROACTIVE RECORD (EU at-berth mandate, 08.07.2026)
 

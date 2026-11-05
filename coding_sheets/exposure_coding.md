@@ -1,6 +1,6 @@
 # ART-41 — Coding sheet: remote conditions E_C (pandemic exposure) and E_R (Red Sea rerouting exposure)
 
-Rules: codebook v2.8 §C (entries K17–K17d). Rules were fixed on 2026-11-03 before data retrieval (`docs/exposure_rules_v1.md`); the two amendments (K17a anchors; K17c Z definition) are logged with reasons. Computation scripts: `src/e_covid.py`, `src/fetch_comtrade.py`, `src/compute_Q.py`. Derived tables: `data/exposure/`.
+Rules: codebook v2.9 §C (entries K17–K17d). Rules were fixed on 2026-11-03 before data retrieval (`docs/exposure_rules_v1.md`); the two amendments (K17a anchors; K17c Z definition) are logged with reasons. Computation scripts: `src/e_covid.py`, `src/fetch_comtrade.py`, `src/compute_Q.py`. Derived tables: `data/exposure/`.
 
 ## E_C — pandemic exposure (national stringency, 1 Mar–31 Dec 2020)
 
