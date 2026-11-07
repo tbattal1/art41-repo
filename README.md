@@ -38,9 +38,9 @@ docs/                          design document, pilot decision log, exposure pre
 python3 src/art41_outcome.py --portid Rotterdam --shock S1 --snapshot data/snapshots/july2026/Rotterdam_COVID.csv
 # full fsQCA analysis (R 4.3.3, QCA 3.25, admisc 0.41)
 Rscript src/ART41_R1_analysis.R
-# Supplementary S1 tables, figures 1-3 and graphical abstract
+# Supplementary S1 tables, figures 1-4 and graphical abstract
 Rscript src/export_S1.R && python3 src/build_S1.py
-python3 src/make_figure1.py && python3 src/make_figures.py && python3 src/make_graphical_abstract.py results/figures
+python3 src/make_figure1.py && python3 src/make_figure_method.py && python3 src/make_figures.py && python3 src/make_graphical_abstract.py results/figures
 ```
 
 ## Notes on provenance
