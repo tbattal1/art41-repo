@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figure 2 (R1): how the outcome is measured (Section 3.5).
+"""Figure 3 (R1): how the outcome is measured (Section 3.5).
 
 Two worked examples from the frozen July 2026 PortWatch snapshots:
   (a) Rotterdam, COVID-19 window  - the standard measurement (depth, half-life, resilience triangle);
@@ -85,5 +85,5 @@ b = panel(axes[1], "Mersin", "RedSea", "2023-11-19", "2024-11-18", pd.Timestamp(
 axes[0].set_ylim(0.80, 1.10); axes[1].set_ylim(0.55, 1.12)
 axes[1].set_ylabel("")
 fig.tight_layout()
-fig.savefig(f"{REPO}/results/figures/Figure2_R1.png", bbox_inches="tight"); fig.savefig(f"{REPO}/results/figures/Figure2_R1.pdf", bbox_inches="tight")
+fig.savefig(f"{REPO}/results/figures/Figure3_R1.png", bbox_inches="tight"); fig.savefig(f"{REPO}/results/figures/Figure3_R1.pdf", bbox_inches="tight")
 print("Rotterdam COVID:", a, "| Mersin Red Sea:", b, "| Mersin without K24:", d0, h0)

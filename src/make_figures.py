@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figures 3 and 4 for ART-41 R1 from results/calibrated_matrix_R1.csv (A1 windows + K24)."""
+"""Figures 4 and 5 for ART-41 R1 from results/calibrated_matrix_R1.csv (A1 windows + K24)."""
 import pandas as pd, numpy as np, matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from adjustText import adjust_text
@@ -24,7 +24,7 @@ d["hav_path"] = np.minimum.reduce([d.C1, d.C2, d.C3, 1-d.C4, d.C5])
 
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9})
 
-# ---------------- Figure 3 ----------------
+# ---------------- Figure 4 ----------------
 fig, axes = plt.subplots(1, 3, figsize=(12, 4.3), dpi=300)
 panels = [
  ("nC4", "Ycov", "necessity", "(a) Necessity: ~C4 → resilience, COVID-19", "~C4 (absence of compound lock-in)", "Resilience to the COVID-19 shock", {"Durban": (6, 4), "Piraeus": (6, 4), "Shanghai": (6, -9)}),
@@ -50,9 +50,9 @@ for ax, (xc, yc, rel, title, xl, yl, lab) in zip(axes, panels):
     ax.tick_params(labelsize=7.5)
     print(title, "->", sub)
 fig.tight_layout(w_pad=2.0)
-fig.savefig(f"{REPO}/results/figures/Figure3_R1.png", bbox_inches="tight"); fig.savefig(f"{REPO}/results/figures/Figure3_R1.pdf", bbox_inches="tight"); plt.close(fig)
+fig.savefig(f"{REPO}/results/figures/Figure4_R1.png", bbox_inches="tight"); fig.savefig(f"{REPO}/results/figures/Figure4_R1.pdf", bbox_inches="tight"); plt.close(fig)
 
-# ---------------- Figure 4 ----------------
+# ---------------- Figure 5 ----------------
 fig, ax = plt.subplots(figsize=(7.2, 6.3), dpi=300)
 ax.axhline(0.5, ls="--", color="0.5", lw=0.9); ax.axvline(0.5, ls="--", color="0.5", lw=0.9)
 ax.grid(True, color="0.92", lw=0.6); ax.set_axisbelow(True)
@@ -70,5 +70,5 @@ for xx, yy, t, ha, va in [(0.01, 1.04, "Red Sea window only", "left", "top"), (0
 ax.set_xlim(-0.06, 1.06); ax.set_ylim(-0.07, 1.07)
 ax.set_xlabel("Resilience to the COVID-19 shock (fuzzy-set membership)", fontsize=10)
 ax.set_ylabel("Resilience to the Red Sea-window shock (fuzzy-set membership)", fontsize=10)
-fig.tight_layout(); fig.savefig(f"{REPO}/results/figures/Figure4_R1.png", bbox_inches="tight"); fig.savefig(f"{REPO}/results/figures/Figure4_R1.pdf", bbox_inches="tight")
+fig.tight_layout(); fig.savefig(f"{REPO}/results/figures/Figure5_R1.png", bbox_inches="tight"); fig.savefig(f"{REPO}/results/figures/Figure5_R1.pdf", bbox_inches="tight")
 print("off-diagonal:", [NAMES[p] for p in d.index if (d.loc[p,"Ycov"]>0.5) != (d.loc[p,"Yred"]>0.5)])

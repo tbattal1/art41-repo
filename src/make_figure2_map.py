@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figure 1 (R1): calibrated resilience by port, two shock windows, on a world map.
+"""Figure 2 (R1): calibrated resilience by port, two shock windows, on a world map.
 Changes vs. submitted version (R2: labels masked the circles; colour palette not colour-blind safe;
 Mersin annotation withdrawn under codebook K24):
   - colour-blind-safe diverging palette (orange = fragile, blue = resilient; ColorBrewer PuOr-like ends),
@@ -78,6 +78,6 @@ cols = [PORTS[0:8], PORTS[8:15], PORTS[15:22]]; start = [1, 9, 16]
 for c, (grp, s0) in enumerate(zip(cols, start)):
     for r, p in enumerate(grp):
         lax.text(0.04 + c * 0.33, 0.93 - r * 0.112, f"{s0 + r}. {p[1]}", transform=lax.transAxes, fontsize=8.3, va="top", color="#2B3A4A")
-fig.savefig(f"{REPO}/results/figures/Figure1_R1.png", bbox_inches="tight", dpi=300)
-fig.savefig(f"{REPO}/results/figures/Figure1_R1.pdf", bbox_inches="tight")
+fig.savefig(f"{REPO}/results/figures/Figure2_R1.png", bbox_inches="tight", dpi=300)
+fig.savefig(f"{REPO}/results/figures/Figure2_R1.pdf", bbox_inches="tight")
 print("ok")
