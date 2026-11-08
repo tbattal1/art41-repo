@@ -41,7 +41,7 @@ box(6.95, 0.45, 5.75, 3.35, "#FBF1E8", ORG)
 ax.text(9.82, 3.5, "Fragility: patterned, and differently in each window", fontsize=11.5, fontweight="bold", color=ORG, ha="center")
 ax.text(7.15, 3.0, "COVID-19", fontsize=10.5, fontweight="bold", color=NAVY)
 ax.text(7.15, 2.68, "~C1 · C2 · ~C3 · ~C4 · ~C5", fontsize=11, family="DejaVu Sans Mono", color=NAVY)
-ax.text(7.15, 2.36, "thin, low-autonomy\nprivatised ports (4 cases)\ncons. 0.84, PRI 0.73\nthreshold-marginal",
+ax.text(7.15, 2.36, "ministry-controlled,\nprivatized ports (4 cases)\ncons. 0.84, PRI 0.73\nthreshold-marginal",
         fontsize=9, color=GREY, va="top")
 ax.text(10.15, 3.0, "Red Sea window", fontsize=10.5, fontweight="bold", color=NAVY)
 ax.text(10.15, 2.68, "~C1 · ~C2 · ~C3 · C4 · C5", fontsize=11, family="DejaVu Sans Mono", color=NAVY)
@@ -49,7 +49,7 @@ ax.text(10.15, 2.36, "compound lock-in in a port\nnot exposed to the rerouting\n
         fontsize=9, color=GREY, va="top")
 ax.plot([7.15, 12.5], [1.22, 1.22], color="#E3C7AE", lw=0.8)
 ax.text(9.82, 0.82, "Measured exposure is neither necessary nor sufficient.\n"
-        "The windows differ in context, not in a shock-specific recipe.",
+        "The windows differ in context, not in a shock-specific pattern.",
         fontsize=9.5, color=NAVY, ha="center", va="center", style="italic")
 ax.text(12.7, 0.12, "~ = absence of a condition;   · = logical AND", fontsize=8, color=GREY, ha="right")
 fig.savefig(f"{OUT}/Graphical_Abstract_R1.png", dpi=200); fig.savefig(f"{OUT}/Graphical_Abstract_R1.pdf")
